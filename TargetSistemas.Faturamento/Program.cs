@@ -5,6 +5,7 @@
         Console.WriteLine("Faturamento Anual---------------");
         Console.WriteLine($"Faturamento mínimo: {Invoicing.getInvoicingMin().ToString("n2")}");
         Console.WriteLine($"Faturamento máximo: {Invoicing.getInvoicingMax().ToString("n2")}");
+        Console.WriteLine($"Faturamento acima da média: {Invoicing.getInvoicingAboveAverage().ToString("n0")}");
         Console.WriteLine("================================");
     }    
 }
@@ -21,6 +22,11 @@ public static class Invoicing
     public static decimal getInvoicingMax()
     {
         return invoicingValue.Max();
+    }
+    public static decimal getInvoicingAboveAverage()
+    {
+        decimal invoicingAverage = invoicingValue.Average();
+        return invoicingValue.Where(x => x > invoicingAverage).Count();
     }
 }
 
